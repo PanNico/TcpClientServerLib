@@ -1,6 +1,6 @@
 TARGET=bin/tcp_server bin/tcp_client
-CFLAGS=-I./include -Wall
-LDFLAGS=
+CFLAGS:=$(CFLAGS) -I./include -Wall
+LDFLAGS:=$(LDFLAGS)
 PREPARE=obj bin
 
 all: $(PREPARE) $(TARGET)
