@@ -12,5 +12,6 @@ void tcp_server_cleanup(int sockfd);
 // a new connetion before ending it.
 // auth_cb is a callback used to define a custom authentication
 // between client and server.
-int tcp_server_run(int port, int (*auth_cb)(), void (*exec_cb)(), int times);
+int tcp_server_run(int port, int (*auth_cb)(int), void (*exec_cb)(int),
+                   int times);
 #endif

@@ -40,7 +40,7 @@ int tcp_server_listen(int sockfd) {
   return accept(sockfd, (struct sockaddr*)&cli, &len);
 }
 
-int tcp_server_run(int port, int (*auth_cb)(), void (*exec_cb)(int),
+int tcp_server_run(int port, int (*auth_cb)(int), void (*exec_cb)(int),
                    int times) {
   int sockfd = tcp_server_init(port);
 
@@ -53,7 +53,7 @@ int tcp_server_run(int port, int (*auth_cb)(), void (*exec_cb)(int),
     int connfd = tcp_server_listen(sockfd);
 
     if (connfd > 0) {
-      if (auth_cb == NULL || !(*auth_cb)()) (*exec_cb)(connfd);
+      if (auth_cb == NULL || !(*auth_cb)(connfd)) (*exec_cb)(connfd);
     }
   }
 

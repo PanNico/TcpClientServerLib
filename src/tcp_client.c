@@ -38,7 +38,7 @@ int tcp_client_connect(int sockfd) {
 
 void tcp_client_cleanup(int sockfd) { close(sockfd); }
 
-int tcp_client_run(const char* srv_addr, int srv_port, int (*auth_cb)(),
+int tcp_client_run(const char* srv_addr, int srv_port, int (*auth_cb)(int),
                    void (*exec_cb)(int)) {
   int sockfd = tcp_client_init(srv_addr, srv_port);
 
@@ -48,7 +48,7 @@ int tcp_client_run(const char* srv_addr, int srv_port, int (*auth_cb)(),
     return -2;
   }
 
-  if (auth_cb == NULL || !(*auth_cb)()) (*exec_cb)(sockfd);
+  if (auth_cb == NULL || !(*auth_cb)(sockfd)) (*exec_cb)(sockfd);
 
   tcp_client_cleanup(sockfd);
 
