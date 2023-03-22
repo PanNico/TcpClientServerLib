@@ -55,6 +55,7 @@ int tcp_client_run(const char* srv_addr, int srv_port, int (*auth_cb)(),
   return 0;
 }
 
+#ifdef TEST_TCP_ACTOR
 void print_hello(int sockfd) { printf("Hello by the client\n"); }
 
 int main(int argc, char** argv) {
@@ -66,4 +67,4 @@ int main(int argc, char** argv) {
   int port_num = atoi(argv[2]);
   return tcp_client_run(argv[1], port_num, NULL, print_hello);
 }
-
+#endif
