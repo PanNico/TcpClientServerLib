@@ -5,6 +5,10 @@ PREPARE=obj bin
 
 all: $(PREPARE) $(TARGET)
 
+tcp_client: $(PREPARE) bin/tcp_client
+
+tcp_server: $(PREPARE) bin/tcp_server
+
 clean:
 	rm -rf bin obj
 
